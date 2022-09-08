@@ -1,9 +1,10 @@
 import React, { FC, useState } from 'react';
-import { preProcessFile } from 'typescript';
 import TodoForm from './components/TodoForm';
 import TodoList from './components/TodoList';
 
 import TodoModal from './models/todoType';
+
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const App:FC = () => {
   const [ todos, setTodos ] = useState<TodoModal[]>([]);
@@ -14,7 +15,7 @@ const App:FC = () => {
 
   const handleDeleteTodoItem = (todoId: string) => {
     setTodos((pre) => pre.filter(todo => todo.id !== todoId));
-  }
+  };
 
   return (
     <div>

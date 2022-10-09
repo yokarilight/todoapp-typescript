@@ -1,19 +1,21 @@
 import React, { FC, useState } from 'react';
-import { preProcessFile } from 'typescript';
-import TodoForm from './components/TodoForm';
-import TodoList from './components/TodoList';
+import TodoForm from './components/todoComponents/TodoForm';
+import TodoList from './components/todoComponents/TodoList';
 
 import TodoModal from './models/todoType';
 
 const App:FC = () => {
   const [ todos, setTodos ] = useState<TodoModal[]>([]);
+  const [ isApplying, setIsApplying ] = useState<boolean>(false);
 
   const handleAddTodoItem = (inputValue: string) => {
     setTodos((pre) => [...pre, { 'id': Math.random().toString(), 'description': inputValue }]);
   };
 
   const handleDeleteTodoItem = (todoId: string) => {
+    setIsApplying(true);
     setTodos((pre) => pre.filter(todo => todo.id !== todoId));
+    setIsApplying(false);
   }
 
   return (
@@ -24,7 +26,7 @@ const App:FC = () => {
         </div>
       </header>
       <TodoForm handleAddTodoItem={handleAddTodoItem} />
-      <TodoList data={todos} handleDeleteTodoItem={handleDeleteTodoItem} />
+      <TodoList data={todos} handleDeleteTodoItem={handleDeleteTodoItem} isApplying={isApplying} />
     </div>
   );
 }

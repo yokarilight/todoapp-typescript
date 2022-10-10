@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { ImCancelCircle } from 'react-icons/im';
 import ModalConform from '../modals/ModalConfirm';
 
@@ -16,15 +16,10 @@ const TodoItem:FC<TodoItemProps> = ({ id, todo, handleDeleteTodoItem, isApplying
 		setIsModalOpen(!isModalOpen)
 	}
 
-	useEffect(() => {
-		console.log('isModalOpen', isModalOpen)
-	}, [isModalOpen]);
-
 	return (
 		<>
 			<div className='w-64 px-4 py-2 bg-purple-500 flex justify-between items-center'>
 				<div className='font-bold text-white'>{todo}</div>
-				{/* <ImCancelCircle onClick={handleDeleteTodoItem.bind(null, id)} /> */}
 				<ImCancelCircle onClick={() => setIsModalOpen(true)} />
 			</div>
 			<ModalConform
@@ -34,6 +29,7 @@ const TodoItem:FC<TodoItemProps> = ({ id, todo, handleDeleteTodoItem, isApplying
 				apply={handleDeleteTodoItem.bind(null, id)}
 				applyDisabled={isApplying}
 				applyLoading={isApplying}
+				cancelBtnClass='d-flex align-items-center'
 			>
 				Are you show you want to delete this item?
 			</ModalConform>

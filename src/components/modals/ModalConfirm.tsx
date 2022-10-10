@@ -76,7 +76,7 @@ const ModalConfirm:FC<ModalConfirmProps> = (props) => {
 					onClick={toggle}
 					disabled={applyLoading}
 				>
-					<ImCross />
+					<ImCross className='mr-2' />
 					<span>{cancelBtnName}</span>
 				</Button>
 				<ProgressButton
@@ -86,12 +86,17 @@ const ModalConfirm:FC<ModalConfirmProps> = (props) => {
 					isDisabled={applyDisabled}
 					isLoading={applyLoading}
 				>
-					<AiOutlineCheck />
+					<AiOutlineCheck className='mr-2' />
 					<span>{applyBtnName}</span>
 				</ProgressButton>
       </ModalFooter>
     </Modal>
   );
 };
+
+ModalConfirm.defaultProps = {
+  'cancelBtnClass': 'd-flex align-items-center justify-content-center',
+  'applyBtnClass': 'd-flex align-items-center justify-content-center',
+}
 
 export default ModalConfirm;
